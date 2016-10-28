@@ -1,0 +1,57 @@
+buildscript {
+    ext {
+        springBootVersion = '1.4.1.RELEASE'
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        maven { url 'https://repo.spring.io/libs-milestone' }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+
+
+war {
+    baseName = 'social-login'
+    version = '0.0.1-SNAPSHOT'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    maven { url 'https://repo.spring.io/libs-milestone' }
+}
+
+configurations {
+    providedRuntime
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-security")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile("org.springframework.boot:spring-boot-starter-jdbc")
+    compile("org.springframework.boot:spring-boot-starter-social-facebook")
+    compile("org.springframework.boot:spring-boot-starter-social-twitter")
+    compile("org.springframework.boot:spring-boot-starter-social-linkedin")
+
+    compile("org.springframework.social:spring-social-web")
+    compile("org.springframework.social:spring-social-core")
+    compile("org.springframework.social:spring-social-security")
+    compile('org.springframework.social:spring-social-github:1.0.0.M4')
+    compile("com.h2database:h2")
+
+
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
